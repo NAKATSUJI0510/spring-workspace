@@ -1,0 +1,34 @@
+package com.example.demo.cntroller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class HelloController {
+	@GetMapping({ "/", "/test" })
+	public String index() {
+		return "index";
+	}
+
+	@PostMapping("/hello")
+	public String input(@RequestParam("msg") String message,
+			Model model) {
+		model.addAttribute("memo", message);
+		return "hello";
+	}
+
+	@PostMapping("/hello")
+	public String show(
+			@RequestParam("msg") String name,
+			@RequestParam("age") int age,
+			@RequestParam("hobby") String hobby,
+			Model model) {
+		model.addAttribute("msg", name);
+		model.addAttribute("age", age);
+		model.addAttribute("hobby", hobby);
+		return "hello";
+	}
+}

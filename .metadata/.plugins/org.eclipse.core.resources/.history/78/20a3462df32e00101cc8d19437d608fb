@@ -1,0 +1,10 @@
+package com.example.demo.cntroller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+
+public class HelloController {
+	@GetMapping({ "/", "/test" }) //GETメソッドでURLパターン「/」でアクセスされた場合に呼び出される：「/」＝「http://localhost:8080」
+	public String index() {
+		return "hello";
+	}
+}

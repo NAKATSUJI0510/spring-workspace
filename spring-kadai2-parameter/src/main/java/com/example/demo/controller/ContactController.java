@@ -1,0 +1,62 @@
+package com.example.demo.controller;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class ContactController {
+	@GetMapping("/contact")
+	public String index() {
+		return "contactForm";
+	}
+
+	@PostMapping("/contact")
+	public String contact(
+			@RequestParam("name") String name,
+			@RequestParam("email") String email,
+			@RequestParam("detail") String detail,
+			@RequestParam("dueDate") LocalDate dueDate,
+			@RequestParam("lang") String[] langList,
+			@RequestParam("genre") String genre,
+			Model model) {
+		// エラーメッセージリストを初期化
+		List<String> errors = new ArrayList<String>();
+
+		if (name.isEmpty()) {
+			errors.add("名前は必須です。");
+		} else if (name.length() > 20) {
+			errors.add("名前は20文字以内で入力してください");
+		}
+
+		if (email.isEmpty()) {
+			errors.add("メールアドレスは必須です。");
+		}
+
+		if (errors.size() > 0) {
+			model.addAttribute("errors", errors);
+			return "contactForm";
+		}
+
+		//		if (genre.equals("資料請求")) {
+		//			model.addAttribute("genre", "資料請求ありがとうございます！");
+		//		} else if (genre.equals("見積り依頼")) {
+		//			model.addAttribute("genre", "見積もり依頼ありがとうございます！");
+		//		}
+		model.addAttribute("name", name);
+		model.addAttribute("email", email);
+		model.addAttribute("detail", detail);
+		model.addAttribute("dueDate", dueDate);
+		model.addAttribute("langList", langList);
+		model.addAttribute("genre", genre);
+
+		return "contactResult";
+	}
+
+}

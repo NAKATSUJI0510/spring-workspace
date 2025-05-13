@@ -1,0 +1,10 @@
+package com.example.demo.cntroller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+
+public class HelloController {
+	@GetMapping({ "/", "/test" })
+	public String index() {
+		return "index";
+	}
+}

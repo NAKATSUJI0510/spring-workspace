@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>研修お問い合わせ</title>
+</head>
+<body>
+	<h1>お問い合わせありがとうございます！</h1>
+	<h3>以下の内容にて受け付けました！</h3>
+	
+	<table border="1">
+<!--		<tr>-->
+<!--			<th>種別</th>-->
+<!--				<td>-->
+<!--					<input type="radio" name="genre" value="s">資料請求<br>-->
+<!--					<input type="radio" name="genre" value="m">見積り依頼-->
+<!--				</td>-->
+<!--		</tr>-->
+		<tr>
+			<th>言語</th>
+				<td>
+				<input type="checkbox" name="lang" value="java">Java研修<br>
+				<input type="checkbox" name="lang" value="php">PHP研修<br>
+				<input type="checkbox" name="lang" value="python">Python研修<br>
+				</td>
+		</tr>
+		<tr>
+			<th>詳細内容</th>
+			<td th:text="${detail}"></td>
+		</tr>
+		<tr>
+			<th>実施予定日</th>
+				<td>
+					<input type="date" name="dueDate">
+				</td>
+		</tr>
+		<tr><th>お名前</th><th th:text="${name}"></th></tr>
+		<tr><th>メールアドレス</th><th th:text="${email}"></th></tr>
+	</table>
+</body>
+</html>
